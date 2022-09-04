@@ -18,6 +18,9 @@ const displayCategories = async (data) => {
     const Option = document.createElement("li");
     Option.classList.add("font-bold");
     Option.classList.add("border");
+    Option.classList.add("shadow-2xl");
+    Option.classList.add("hover:bg-indigo-500");
+    Option.classList.add("hover:text-white");
     Option.classList.add("m-2");
     Option.classList.add("px-4");
     Option.classList.add("py-2");
