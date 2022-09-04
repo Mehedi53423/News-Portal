@@ -21,7 +21,7 @@
                 </a>
                 <!-- Title End -->
                 <div class="w-full md:block md:w-auto">
-                    <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-blod md:border-0 md:bg-white">
+                    <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-bold md:border-0 md:bg-white">
                         <li class="">
                             <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-indigo-500 md:border-b-2 md:border-indigo-500 md:bg-transparent md:text-indigo-500">News</a>
                         </li>
@@ -48,16 +48,38 @@
 
         <!-- Message Section Start -->
         <section class="">
-            <div id="foundedMessage" class="w-full container mx-auto bg-white-500 text-black shadow-2xl rounded-xl">
+            <div id="foundedMessage" class="w-full container mx-auto bg-white-500 text-black shadow-xl rounded-xl">
                 <div class="p-5 text-center">
                     <b class="text-lg "><span id="foundedNumber">0</span> Items Found</b>
                 </div>
             </div>
         </section>
         <!-- Message Section End -->
-
     </header>
     <!-- Header Section End -->
+
+    <!-- Main Section Start -->
+    <main>
+        <!-- Sort By Section Start -->
+        <section class="mt-4">
+            <div class="flex justify-between container mx-auto">
+                <div class="flex">
+                    <label for="countries" class="block w-52 text-base mt-2 font-bold text-gray-900">Short By View:</label>
+                        <select id="countries" class="bg-gray-50 text-gray-900 text-base font-bold rounded-lg block w-full p-2 border">
+                            <option selected>Default</option>
+                            <option value="">Most Viewed</option>
+                            <option value="">Less Viewed</option>
+                        </select>
+                </div>
+                <div class="font-bold">
+                    <button class="border border-indigo-500 px-4 py-2 mr-1 text-white bg-indigo-500 rounded-lg">Today's Pick</button>
+                    <button class="border border-indigo-500 px-4 py-2 text-indigo-500 rounded-lg">Tending</button>
+                </div>
+            </div>
+        </section>
+        <!-- Sort By Section End -->
+    </main>
+    <!-- Main Section End -->
 
     <!-- JS File -->
     <script src="js/script.js"></script>
