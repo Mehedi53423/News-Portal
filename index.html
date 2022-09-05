@@ -83,7 +83,7 @@
         <!-- Sort By Section End -->
 
         <!-- Progress Bar Section Start -->
-        <section id="speener-container" class=" container mx-auto hidden">
+        <section id="speener-container" class="container mx-auto hidden">
             <progress class="progress w-full"></progress>
         </section>
         <!-- Progress Bar Section End -->
@@ -93,17 +93,25 @@
             
         </section>
         <!-- News Section End -->
-        <!-- modal -->
-        <!-- <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-        <div class="modal">
-            <div class="modal-box relative">
-                <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                <div id="modal-body">
+        <!-- Modal Section Start -->
+        <section>
+            <div id="modal" class="fixed bg-black bg-opacity-40 inset-0 flex justify-center items-center hidden">
+                <div class="bg-gray-200 p-5 rounded-lg w-2/3 md:w-1/3">
+                    <div class="text-center">
+                        <h4 class="text-lg font-bold">Author Detail</h4>
+                    </div>
+                    <div id="modalDetails">
 
+                    </div>
+                    <div class="mt-5 text-right">
+                        <button class="bg-red-500 hover:bg-red-800 px-4 py-2 border rounded-lg text-white font-bold" onclick="closeModal()">Close</button>
+                    </div>
                 </div>
             </div>
-        </div> -->
+        </section>
+        <!-- Modal Section End -->
+        
     </main>
     <!-- Main Section End -->
     

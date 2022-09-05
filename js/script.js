@@ -1,3 +1,5 @@
+const modalId = document.getElementById("modal");
+
 //Load Categories
 const categories = async () => {
   const url = `https://openapi.programming-hero.com/api/news/categories`;
@@ -41,7 +43,6 @@ const cards = async (id) => {
     const res = await fetch(url);
     const data = await res.json();
     displayCard(data.data);
-    console.log(data.data);
   } catch (error) {
     console.log(error);
   }
@@ -70,7 +71,6 @@ const displayCard = (cards) => {
       return -1;
     }
   });
-  // console.log(sortFind);
 
   cards.forEach((card) => {
     const { image_url, thumbnail_url, title, details, author, total_view } =
@@ -92,51 +92,52 @@ const displayCard = (cards) => {
 
     cardSectionDiv.innerHTML = `
         <div class="flex flex-col items-center bg-white rounded-xl border shadow-lg md:flex-row hover:bg-gray-100">
-            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="${thumbnail_url}" alt="">
+            <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-3" src="${thumbnail_url}" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${title}</h5>
                 <p class="mb-3 font-normal text-gray-700">${
-                  details.length > 400
-                    ? details.slice(0, 400) + " ....."
+                  details.length > 600
+                    ? details.slice(0, 600) + " ....."
                     : details
                 }</p>
                 <div class="flex card-actions items-center justify-between">
                   <div class="flex">
                       <div class="mr-3">
                           <img class="w-[40px] rounded-full" src="${
-                            img ? img : "img not found"
+                            img ? img : "Image Is Not Available"
                           }" alt="">
                       </div>
                       <div >
                         <h4 class="font-bold text-xl">${
-                          name ? name : "Name Not Found"
+                          name ? name : "Name Is Not Available"
                         }</h4>
                         <h5>${
                           published_date
                             ? published_date
-                            : "Published Date Not Found"
+                            : "Published Date Is Not Available"
                         }</h5>
                       </div>
                   </div>
                   <div class="flex ml-3 items-center">
+                      <i class="fa-solid fa-eye pr-2"></i>
                       <h1>
                           <span>
                               ${total_view ? total_view + " M" : "No Views"}
                           </span>
                       </h1>
                   </div>
-                  <div class="text-yellow-500">
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star"></i>
-                      <i class="fa-solid fa-star-half-stroke"></i>
+                  <div>
+                      <i class="fa-regular fa-star hover:text-yellow-500"></i>
+                      <i class="fa-regular fa-star hover:text-yellow-500"></i>
+                      <i class="fa-regular fa-star hover:text-yellow-500"></i>
+                      <i class="fa-regular fa-star hover:text-yellow-500"></i>
+                      <i class="fa-regular fa-star hover:text-yellow-500"></i>
 					          </div>
                   <div class="flex" >
                     <div class="card-actions justify-end">
-                        <label for="my-modal-4" class="bg-indigo-500 py-2 px-3 rounded-xl" onclick="modal('${
+                        <button type="button" data-modal-toggle="defaultModal" class="hover:bg-indigo-500 hover:text-white py-2 px-3 rounded-xl" onclick="modal('${
                           card._id
-                        }')"><i class="fa-solid fa-arrow-right"></i></label>
+                        }')"><i class="fa-solid fa-arrow-right text-xl"></i></button>
                     </div>                                                
 				          </div>
                 </div>
@@ -157,16 +158,21 @@ const modal = async (id) => {
     console.log(error);
   }
   const { name, published_date, img } = data.data[0].author;
-
-  const modalBody = document.getElementById("modal-body");
-  modalBody.textContent = "";
-  modalBody.innerHTML = `
-    <p class="mb-3">Author Name :${name ? name : "name not found"}</p>
-    <p class="mb-3">published date :${
-      published_date ? published_date : "published date not found"
+  const modalDetails = document.getElementById("modalDetails");
+  modalDetails.innerHTML = `
+    <p class="mb-3 text-lg font-bold">Author Name : ${
+      name ? name : "Name Is Not Available"
     }</p>
-    <img src="${img ? img : "image not found"}"/>
-    `;
+    <p class="mb-3 text-lg font-bold">Published Date : ${
+      published_date ? published_date : "Published Date Is Not Available"
+    }</p>
+    <img class="rounded-lg" src="${img ? img : "Image Is Not Available"}"/>
+  `;
+  modalId.classList.remove("hidden");
+};
+
+const closeModal = () => {
+  modalId.classList.add("hidden");
 };
 
 cards("1");
