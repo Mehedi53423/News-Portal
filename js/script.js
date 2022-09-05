@@ -60,7 +60,6 @@ const displayCard = (cards) => {
 
   const speenerContainer = document.getElementById("speener-container");
   speenerContainer.classList.remove("hidden");
-  // console.log(speenerContainer);
 
   // sort
 
@@ -83,10 +82,16 @@ const displayCard = (cards) => {
     const speenerContainer = document.getElementById("speener-container");
     speenerContainer.classList.add("hidden");
 
-    cardSectionDiv.classList.add("card", "shadow-xl", "mb-5", "lg:w-full");
+    cardSectionDiv.classList.add(
+      "card",
+      "shadow-xl",
+      "mb-5",
+      "lg:w-full",
+      "rounded-xl"
+    );
 
     cardSectionDiv.innerHTML = `
-        <div class="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100">
+        <div class="flex flex-col items-center bg-white rounded-xl border shadow-lg md:flex-row hover:bg-gray-100">
             <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src="${thumbnail_url}" alt="">
             <div class="flex flex-col justify-between p-4 leading-normal">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${title}</h5>
@@ -95,11 +100,73 @@ const displayCard = (cards) => {
                     ? details.slice(0, 400) + " ....."
                     : details
                 }</p>
+                <div class="flex card-actions items-center justify-between">
+                  <div class="flex">
+                      <div class="mr-3">
+                          <img class="w-[40px] rounded-full" src="${
+                            img ? img : "img not found"
+                          }" alt="">
+                      </div>
+                      <div >
+                        <h4 class="font-bold text-xl">${
+                          name ? name : "Name Not Found"
+                        }</h4>
+                        <h5>${
+                          published_date
+                            ? published_date
+                            : "Published Date Not Found"
+                        }</h5>
+                      </div>
+                  </div>
+                  <div class="flex ml-3 items-center">
+                      <h1>
+                          <span>
+                              ${total_view ? total_view + " M" : "No Views"}
+                          </span>
+                      </h1>
+                  </div>
+                  <div class="text-yellow-500">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star-half-stroke"></i>
+					          </div>
+                  <div class="flex" >
+                    <div class="card-actions justify-end">
+                        <label for="my-modal-4" class="bg-indigo-500 py-2 px-3 rounded-xl" onclick="modal('${
+                          card._id
+                        }')"><i class="fa-solid fa-arrow-right"></i></label>
+                    </div>                                                
+				          </div>
+                </div>
             </div>
-        </div>         
+        </div>
         `;
     cardSection.appendChild(cardSectionDiv);
   });
+};
+
+const modal = async (id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${id}`;
+  let data = {};
+  try {
+    const res = await fetch(url);
+    data = await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+  const { name, published_date, img } = data.data[0].author;
+
+  const modalBody = document.getElementById("modal-body");
+  modalBody.textContent = "";
+  modalBody.innerHTML = `
+    <p class="mb-3">Author Name :${name ? name : "name not found"}</p>
+    <p class="mb-3">published date :${
+      published_date ? published_date : "published date not found"
+    }</p>
+    <img src="${img ? img : "image not found"}"/>
+    `;
 };
 
 cards("1");
