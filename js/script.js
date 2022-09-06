@@ -1,4 +1,5 @@
 const modalId = document.getElementById("modal");
+const spinner = document.getElementById("spinner");
 
 //Load Categories
 const categories = async () => {
@@ -27,10 +28,11 @@ const displayCategories = async (data) => {
       "m-2",
       "px-4",
       "py-2",
-      "rounded-xl"
+      "rounded-xl",
+      "cursor-pointer"
     );
     Option.innerHTML = `
-          <a onclick="loadCard(${category_id})">${category_name}</a>
+          <a onclick="cards(${category_id})">${category_name}</a>
           `;
     newsCategory.appendChild(Option);
   });
@@ -59,11 +61,9 @@ const displayCard = (cards) => {
   const foundedNumber = document.getElementById("foundedNumber");
   foundedNumber.innerText = cards.length;
 
-  const speenerContainer = document.getElementById("speener-container");
-  speenerContainer.classList.remove("hidden");
+  spinner.classList.remove("hidden");
 
-  // sort
-
+  //Sort By View
   const sortFind = cards.sort((x, y) => {
     if (x.total_view < y.total_view) {
       return 1;
@@ -79,8 +79,7 @@ const displayCard = (cards) => {
 
     const cardSectionDiv = document.createElement("div");
 
-    const speenerContainer = document.getElementById("speener-container");
-    speenerContainer.classList.add("hidden");
+    spinner.classList.add("hidden");
 
     cardSectionDiv.classList.add(
       "card",
@@ -91,18 +90,18 @@ const displayCard = (cards) => {
     );
 
     cardSectionDiv.innerHTML = `
-        <div class="flex flex-col items-center bg-white rounded-xl border shadow-lg md:flex-row hover:bg-gray-100">
+        <div class="flex flex-col items-center bg-white rounded-xl shadow-lg md:flex-row hover:bg-gray-100 w-full">
             <img class="object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg p-3" src="${thumbnail_url}" alt="">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">${title}</h5>
+            <div class="flex flex-col justify-between p-4 leading-normal w-full text-justify">
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-justify">${title}</h5>
                 <p class="mb-3 font-normal text-gray-700">${
-                  details.length > 600
-                    ? details.slice(0, 600) + " ....."
+                  details.length > 400
+                    ? details.slice(0, 400) + " ..."
                     : details
                 }</p>
-                <div class="flex card-actions items-center justify-between">
-                  <div class="flex">
-                      <div class="mr-3">
+                <div class="md:flex card-actions items-center justify-between w-full text-center md:text-left">
+                  <div class="md:flex">
+                      <div class="mr-3 flex justify-center md:block">
                           <img class="w-[40px] rounded-full" src="${
                             img ? img : "Image Is Not Available"
                           }" alt="">
@@ -118,7 +117,7 @@ const displayCard = (cards) => {
                         }</h5>
                       </div>
                   </div>
-                  <div class="flex ml-3 items-center">
+                  <div class="md:flex ml-3 items-center">
                       <i class="fa-solid fa-eye pr-2"></i>
                       <h1>
                           <span>
@@ -133,11 +132,11 @@ const displayCard = (cards) => {
                       <i class="fa-regular fa-star hover:text-yellow-500"></i>
                       <i class="fa-regular fa-star hover:text-yellow-500"></i>
 					          </div>
-                  <div class="flex" >
+                  <div class="md:flex" >
                     <div class="card-actions justify-end">
                         <button type="button" data-modal-toggle="defaultModal" class="hover:bg-indigo-500 hover:text-white py-2 px-3 rounded-xl" onclick="modal('${
                           card._id
-                        }')"><i class="fa-solid fa-arrow-right text-xl"></i></button>
+                        }')"><i class="fa-solid fa-arrow-right md:text-xl text-2xl"></i></button>
                     </div>                                                
 				          </div>
                 </div>

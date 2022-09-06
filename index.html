@@ -26,10 +26,10 @@
                 <div class="w-full md:block md:w-auto">
                     <ul class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border md:flex-row md:space-x-8 md:mt-0 md:text-lg md:font-bold md:border-0 md:bg-white">
                         <li class="">
-                            <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-indigo-500 md:border-b-2 md:border-indigo-500 md:bg-transparent md:text-indigo-500">News</a>
+                            <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-indigo-500 rounded-lg md:border-b-2 md:border-indigo-500 md:bg-transparent md:text-indigo-500">News</a>
                         </li>
                         <li>
-                            <a href="./blog.html" class="block py-2 pr-4 pl-3 text-gray-700 font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-indigo-500">Blog</a>
+                            <a href="./blog.html" class="block py-2 pr-4 pl-3 text-gray-700 rounded-lg font-bold hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-indigo-500">Blog</a>
                         </li>
                         <li class="">
                             <img src="./images/profilePhoto.jpg" alt="Profile Photo" class="block h-10 w-10 rounded-full md:h-10 md:w-10 md:border-0 md:p-0">
@@ -51,7 +51,7 @@
 
         <!-- Message Section Start -->
         <section class="">
-            <div id="foundedMessage" class="hidden w-full container mx-auto bg-white-500 text-black shadow-xl rounded-xl">
+            <div id="foundedMessage" class="hidden w-full container mx-auto bg-white-500 text-black shadow-xl rounded-xl border">
                 <div class="p-5 text-center">
                     <b class="text-lg "><span id="foundedNumber">0</span> Items Found</b>
                 </div>
@@ -65,10 +65,10 @@
     <main>
         <!-- Sort By Section Start -->
         <section class="mt-4">
-            <div class="flex justify-between container mx-auto">
-                <div class="flex">
-                    <label for="" class="block w-52 text-base mt-2 font-bold text-gray-900">Short By View:</label>
-                        <select id="" class="bg-gray-50 text-gray-900 text-base font-bold rounded-lg block w-full p-2 border">
+            <div class="md:flex justify-between container mx-auto text-center">
+                <div class="md:flex justify-left md:pb-0 pb-2">
+                    <label class="block w-32 text-base mt-2 font-bold text-gray-900">Short By View:</label>
+                        <select class="bg-gray-50 text-gray-900 text-base font-bold rounded-lg block md:w-2/5  p-2 border">
                             <option selected>Default</option>
                             <option value="">Most Viewed</option>
                             <option value="">Less Viewed</option>
@@ -82,11 +82,12 @@
         </section>
         <!-- Sort By Section End -->
 
-        <!-- Progress Bar Section Start -->
-        <section id="speener-container" class="container mx-auto hidden">
-            <progress class="progress w-full"></progress>
+        <!-- Spinner Start -->
+        <section id="spinner" class="container hidden mx-auto mt-5">
+            <svg class="animate-spin h-10 w-10 border-x-indigo-500 border-4 rounded-full mx-auto" viewBox="0 0 24 24"></svg>
+            <h1 class="text-lg font-bold text-center p-5">Loading...</h1>
         </section>
-        <!-- Progress Bar Section End -->
+        <!-- Spinner End -->
 
         <!-- News Section Start -->
         <section class="container mx-auto mt-5" id="cardSection">
